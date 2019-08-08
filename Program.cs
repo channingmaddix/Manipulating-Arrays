@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace ConsoleApp5
+namespace ManipulatingArrays
 {
     class Program
     {
@@ -63,33 +63,33 @@ namespace ConsoleApp5
                 direction = false;
             }
             else Console.WriteLine("Invalid input. Rotating right.");
-            if (places < 0)
+            if (places < 0)                         //Accounts for if a negative number of places is inputted.
             {
                 places = Math.Abs(places);
                 direction = !direction;
             }
 
-            if (places > arr.Length)
-            {
+            if (places > arr.Length)                //This if statement alters the number of places moved if the number is more than 
+            {                                       //the array length (i.e. if length is 5 and places is 20, move 0 places).
                 places = arr.Length % places;
             }
-            int[] newArr = new int[arr.Length];
+            int[] newArr = new int[arr.Length];     //newArr created for copying to.
             if (direction == true)
             {
-                for (int i = 0; i < arr.Length - places; i++)
-                {
-                    newArr[i + places] = arr[i];
+                for (int i = 0; i < arr.Length - places; i++)   //Moves only elements of the array up to the number 
+                {                                               //of spaces being moved. Example: Rotate right 2 places.
+                    newArr[i + places] = arr[i];                // arr{ 1, 2, 3, 4, 5} => newArr{ , , 1, 2, 3}
                 }
-                for (int j = 0; j < places; j++)
-                {
+                for (int j = 0; j < places; j++)                //Moves remaining elements (4 and 5) to the beginning of newArr:
+                {                                               // arr{1, 2, 3, 4, 5} => newArr{ 4, 5, 1, 2, 3 }
                     newArr[j] = arr[arr.Length - places + j];
                 }
             }
 
             if (direction == false)
             {
-                for (int i = arr.Length - 1; i >= places; i--)
-                {
+                for (int i = arr.Length - 1; i >= places; i--)  //To move left, same logic is used, but the array is iterated 
+                {                                               //from right to left.
                     newArr[i - places] = arr[i];
                 }
                 for (int j = arr.Length - 1; j > places; j--)
@@ -115,16 +115,16 @@ namespace ConsoleApp5
                 newArr[a] = arr[a];
             }
 
-            for (int i = 0; i < newArr.Length - 1; i++)
+            for (int i = 0; i < newArr.Length - 1; i++)     //i moves the search area to the right.
             {
                 minIndex = i;
-                for (int j = i; j < newArr.Length; j++)
+                for (int j = i; j < newArr.Length; j++)     //Iterates through the search area to find the index of the min value.
                 {
                     if (newArr[j] < newArr[minIndex])
                     { minIndex = j; }
                 }
-                temp = newArr[minIndex];
-                newArr[minIndex] = newArr[i];
+                temp = newArr[minIndex];                    //Values at the beginning of the search area and index of 
+                newArr[minIndex] = newArr[i];               //min value are swapped.
                 newArr[i] = temp;
             }
 
