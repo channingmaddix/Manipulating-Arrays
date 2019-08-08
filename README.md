@@ -8,7 +8,7 @@ Reverses an array given as a parameter by iterating from the last element to the
 mapping each one to a new array in the opposite order.
 
 RotateArray:
-Rotates an array any given number of spaces, left or right with for loops.
+Rotates an array any given number of spaces, left or right, with for loops.
 
 SortArray:
 Sorts an array by iterating through it, finding the index of the minimum value and 
